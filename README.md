@@ -37,6 +37,13 @@ To run application just type:
 ```shell
 php artisan serve
 ```
+## Basic accounts (available after seed operation)
+|       E-mail       |     Password     |  Account type |
+|       :---:        |       :---:      |     :---:     |
+| admin@school.com   |  admin_password  |     admin     |
+| teacher@school.com | teacher_password |    teacher    |
+| student@school.com | student_password |    student    |
+
 
 
 
