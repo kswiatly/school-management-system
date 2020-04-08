@@ -1,3 +1,4 @@
+@can('manage-users')
 @extends('layouts.app')
 
 @section('content')
@@ -75,3 +76,4 @@
     </div>
 </div>
 @endsection
+@endcan

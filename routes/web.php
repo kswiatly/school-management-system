@@ -22,5 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('/users', 'UsersController', ['expect'=>['show', 'create','store']]);
+    Route::resource('/teachers', 'TeachersController', ['expect'=>['show', 'create','store', 'destroy']]);
+    Route::resource('/students', 'StudentsController', ['expect'=>['show', 'create','store', 'destroy']]);
+    Route::resource('/classes', 'ClassesController', ['expect'=>['show', 'create','store']]);
 });
 

@@ -62,6 +62,15 @@
                                     <a class="dropdown-item" href="{{ route('register') }}">
                                         Create user
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('admin.teachers.index') }}">
+                                        Teachers
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.students.index') }}">
+                                        Students
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.classes.index') }}">
+                                        Classes
+                                    </a>
                                     @endcan
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
