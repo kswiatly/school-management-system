@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Student;
-use App\Role;
+use App\Classes;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentsController extends Controller
 {
@@ -26,21 +27,20 @@ class StudentsController extends Controller
             return redirect(route('admin.students.index'));
         }
 
-        $roles = Role::all();
+        $classes = Classes::all();
 
         return view('admin.students.edit')->with([
             'student' => $student,
+            'classes' => $classes,
         ]);
     }
 
     public function update(Request $request, Student $student)
     {
-        $student->roles()->sync($request->roles);
-        $student->name = $request->name;
-        $student->email = $request->email;
+        $student->class_id = DB::table('classes')->where('name',$request->classes[0])->value('id');
         
         if($student->save()){
-            $request->session()->flash('success', $student->name . ' has been updated');
+            $request->session()->flash('success', DB::table('users')->where('id', '=', $student->user_id)->value('name') . ' has been updated');
         }
         else{
             $request->session()->flash('error','There was an error during updating the student');

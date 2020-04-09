@@ -24,6 +24,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::resource('/users', 'UsersController', ['expect'=>['show', 'create','store']]);
     Route::resource('/teachers', 'TeachersController', ['expect'=>['show', 'create','store', 'destroy']]);
     Route::resource('/students', 'StudentsController', ['expect'=>['show', 'create','store', 'destroy']]);
-    Route::resource('/classes', 'ClassesController', ['expect'=>['show', 'create','store']]);
+    Route::resource('/classes', 'ClassesController', ['expect'=>['show']]);
+    Route::resource('/subjects', 'SubjectsController', ['expect'=>['show']]);
 });
 

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Classes</div>
+                <div class="card-header">Subjects</div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -13,27 +13,23 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Tutor</th>
-                                <th scope="col">Chairman</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($classes as $class)
+                        @foreach($subjects as $subject)
                             <tr>
-                                <th scope="row">{{ $class->id }}</th>
-                                <td>{{ $class->name }}</td>
-                                <td>{{ $class->description }}</td>
-                                <td>{{DB::table('users')->where('id', '=', $class->tutor_id)->value('name')}}</td>
-                                <td>{{DB::table('users')->where('id', '=', $class->chairman_id)->value('name')}}</td>
+                                <th scope="row">{{ $subject->id }}</th>
+                                <td>{{ $subject->name }}</td>
+                                <td>{{ $subject->description }}</td>
                                 <td>
-                                    @can('edit-classes')
-                                    <a href="{{ route('admin.classes.edit', $class->id) }}">
-                                        <button type="button" class="btn btn-primary float-left mr-3">Edit</button>
+                                    @can('edit-subjects')
+                                    <a href="{{ route('admin.subjects.edit', $subject->id) }}">
+                                        <button type="button" class="btn btn-primary mb-3">Edit</button>
                                     </a>
                                     @endcan
-                                    @can('delete-users')
-                                    <form action="{{ route('admin.classes.destroy', $class->id) }}" method="POST" class="float-left">
+                                    @can('delete-subjects')
+                                    <form action="{{ route('admin.subjects.destroy', $subject->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -44,14 +40,14 @@
                         @endforeach
                         </tbody>
                     </table>
-                    @can('create-classes')
+                    @can('create-subjects')
                     <div class="text-center"> 
-                        <a href="{{ route('admin.classes.create') }}">
-                            <button type="button" class="btn btn-primary float-left">Add new class</button>
+                        <a href="{{ route('admin.subjects.create') }}">
+                            <button type="button" class="btn btn-primary float-left">Add new subject</button>
                         </a>
                     </div>
                     @endcan
-                    {{ $classes->links() }}
+                    {{ $subjects->links() }}
                 </div>
             </div>
         </div>

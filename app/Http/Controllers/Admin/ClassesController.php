@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Classes;
 use App\Role;
+use App\Teacher;
+use App\Student;
 use Gate;
 use Illuminate\Http\Request;
 
@@ -20,24 +22,64 @@ class ClassesController extends Controller
         return view('admin.classes.index')->with('classes', Classes::paginate(10));
     }
 
+    public function create(Classes $class)
+    {
+        if(Gate::denies('create-classes')){
+            return redirect(route('admin.classes.index'));
+        }
+
+        $teachers = Teacher::all();
+        $students = Student::all();
+
+        return view('admin.classes.create')->with([
+            'class' => $class,
+            'teachers' => $teachers,
+            'students' => $students,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $class = new Classes;
+        
+        $class->name = $request->name;
+        $class->description = $request->description;
+        $class->tutor_id = $request->tutor;
+        $class->chairman_id = $request->chairman;
+
+        if($class->save())
+        {
+            $request->session()->flash('success', $class->name . ' has been created');
+        }
+        else{
+            $request->session()->flash('error','There was an error during creating the class');
+        }
+
+        return redirect('/admin/classes');
+    }
+
     public function edit(Classes $class)
     {
         if(Gate::denies('edit-students')){
-            return redirect(route('admin.students.index'));
+            return redirect(route('admin.classes.index'));
         }
 
-        $roles = Role::all();
+        $teachers = Teacher::all();
+        $students = Student::all();
 
         return view('admin.classes.edit')->with([
             'class' => $class,
+            'teachers' => $teachers,
+            'students' => $students,
         ]);
     }
 
     public function update(Request $request, Classes $class)
     {
-        $class->roles()->sync($request->roles);
         $class->name = $request->name;
-        $class->email = $request->email;
+        $class->description = $request->description;
+        $class->tutor_id =  $request->tutor;
+        $class->chairman_id =  $request->chairman;
         
         if($class->save()){
             $request->session()->flash('success', $class->name . ' has been updated');
@@ -54,8 +96,6 @@ class ClassesController extends Controller
         if(Gate::denies('delete-classes')){
             return redirect()->route('admin.classes.index');
         }
-
-        $class->roles()->detach();
         
         if($class->delete()){
             session()->flash('success', $class->name . ' has been deleted');

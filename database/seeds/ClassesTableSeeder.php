@@ -22,8 +22,15 @@ class ClassesTableSeeder extends Seeder
         $teacherRole = Role::where('name', 'teacher')->first();
 
         Classes::create([
-            'name' => '0',
-            'description' => 'Test class',
+            'name' => '0A',
+            'description' => 'Test class A',
+            'tutor_id' => $teacherRole->id,
+            'chairman_id' => $studentRole->id,
+        ]);
+
+        Classes::create([
+            'name' => '0B',
+            'description' => 'Test class B',
             'tutor_id' => $teacherRole->id,
             'chairman_id' => $studentRole->id,
         ]);
