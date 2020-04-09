@@ -6,8 +6,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Create user') }}</div>
-
                 <div class="card-body">
+                    @cannot('manage-users')
+                    <div class="text-center">
+                        You do not have permission to create new user. Contact with admin.
+                    </div>
+                    @endcannot
+                    @can('manage-users')
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -69,6 +74,7 @@
                             </div>
                         </div>
                     </form>
+                    @endcan
                 </div>
             </div>
         </div>

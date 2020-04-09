@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -70,6 +71,7 @@ class RegisterController extends Controller
         ]);
 
         $role = Role::select('id')->where('name', 'student')->first();
+        DB::table('students')->insert(['user_id' => $user->id, 'class_id' => 1]);
         $user->roles()->attach($role);
 
         return $user;

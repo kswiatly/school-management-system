@@ -19,9 +19,9 @@ class UsersTableSeeder extends Seeder
         DB::table('role_user')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $adminRole = Role::where('name', 'admin')->first();
-        $teacherRole = Role::where('name', 'teacher')->first();
-        $studentRole = Role::where('name', 'student')->first();
+        $adminRole = Role::where('name', 'Admin')->first();
+        $teacherRole = Role::where('name', 'Teacher')->first();
+        $studentRole = Role::where('name', 'Student')->first();
 
         $admin = User::create([
             'name' => 'Admin',
