@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/elearning', function () {
+    return view('elearning');
+});
+
+Route::get('/opinion', function () {
+    return view('opinion');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

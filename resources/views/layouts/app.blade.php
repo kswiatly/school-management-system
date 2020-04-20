@@ -76,6 +76,12 @@
                                         Subjects
                                     </a>
                                     @endcan
+                                    <a class="dropdown-item" href="/elearning">
+                                        E-Learning
+                                    </a>
+                                    <a class="dropdown-item" href="/opinion">
+                                        Your opinion
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
