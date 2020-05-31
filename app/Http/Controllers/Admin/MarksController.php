@@ -10,6 +10,7 @@ use App\Student;
 use App\Classes;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MarksController extends Controller
 {
