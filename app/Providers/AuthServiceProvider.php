@@ -76,5 +76,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-subjects', function($user){
             return $user->hasRole('admin');
         });
+
+        Gate::define('create-marks', function($user){
+            return $user->hasRole('admin');
+        });
+        Gate::define('edit-marks', function($user){
+            return $user->hasRole('admin');
+        });
+        Gate::define('delete-marks', function($user){
+            return $user->hasRole('admin');
+        });
     }
 }
