@@ -24,7 +24,7 @@
                             <tr>
                                 <th scope="row">{{ $mark->id }}</th>
                                 <td>{{DB::table('classes')->where('id', '=', $mark->class_id)->value('name')}}</td>
-                                <td>Jan Kowalski</td>
+                                <td>Jan</td>
                                 <td>Mathematics</td>
                                 <td>Marcin Nowak</td>
                                 <td>{{ $mark->mark }}</td>
