@@ -26,7 +26,7 @@
                                 <td>{{DB::table('classes')->where('id', '=', $mark->class_id)->value('name')}}</td>
                                 <td>Jan</td>
                                 <td>Mathematics</td>
-                                <td>Marcin Nowak</td>
+                                <td>Marcin Nowakkkkkk</td>
                                 <td>{{ $mark->mark }}</td>
                                 <td>
                                     @can('edit-marks')
