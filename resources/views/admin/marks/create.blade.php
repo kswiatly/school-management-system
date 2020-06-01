@@ -21,6 +21,7 @@
                             </div>
                         </div>
 
+                        @can('manage-users')
                         <div class="form-group row">
                             <label for="teacher" class="col-md-2 col-form-label text-md-right">Teacher</label>  
                             <div class="col-md-6">
@@ -32,7 +33,8 @@
                                 </select>
                             </div>
                         </div>
-                        
+                        @endcan
+
                         <div class="form-group row">
                             <label for="subject" class="col-md-2 col-form-label text-md-right">Subject</label>  
                             <div class="col-md-6">

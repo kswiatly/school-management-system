@@ -36,7 +36,6 @@
                                 <td>{{DB::table('users')->where('id', '=', $studentUserID)->value('name')}}</td>
                                 <td>{{DB::table('tests')->where('id', '=', $mark->test_id)->value('description')}}</td>
                                 <td>{{ $mark->mark }}</td>
-                                <td>{{DB::table('tests')->where('id', '=', $mark->test_id)->value('created_at')}}</td>
                                 <td>
                                     @can('edit-marks')
                                     <a href="{{ route('admin.marks.edit', $mark->id) }}">

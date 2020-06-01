@@ -75,6 +75,8 @@
                                     <a class="dropdown-item" href="{{ route('admin.subjects.index') }}">
                                         Subjects
                                     </a>
+                                    @endcan
+                                    @can('manage-marks')
                                     <a class="dropdown-item" href="{{ route('admin.marks.index') }}">
                                         Marks
                                     </a>

@@ -11,6 +11,7 @@ use App\Classes;
 use App\Subject;
 use App\Test;
 use Gate;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -52,10 +53,19 @@ class MarksController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $mark = new Marks;
         $mark->timestamps = false;
-        $student_id = DB::table('students')->where('user_id',$request->student)->value('id');
-        $teacher_id = DB::table('teachers')->where('user_id',$request->teacher)->value('id');
-        $mark->class_id = $request->class;
+        $student_id = DB::table('students')->where('user_id', $request->student)->value('id');
+        if(Auth::user()->id==1)
+        {
+            $teacher_id = DB::table('teachers')->where('user_id', $request->teacher)->value('id');
+        }
+        else
+        {
+            $teacher_id = DB::table('teachers')->where('user_id', Auth::user()->id)->value('id');
+        }
+
+        
         $mark->teacher_id = $teacher_id;
+        $mark->class_id = $request->class;
         $mark->subject_id = $request->subject;
         $mark->student_id = $student_id;
         $mark->mark = $request->mark;
@@ -64,7 +74,7 @@ class MarksController extends Controller
 
         if($mark->save())
         {
-            $request->session()->flash('success', $mark->mark . ' has been created');
+            $request->session()->flash('success', 'Mark has been created');
         }
         else{
             $request->session()->flash('error','There was an error during creating the mark');

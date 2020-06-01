@@ -28,6 +28,7 @@ Route::get('/opinion', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('/users', 'UsersController', ['expect'=>['show', 'create','store']]);
     Route::resource('/teachers', 'TeachersController', ['expect'=>['show', 'create','store', 'destroy']]);
@@ -37,3 +38,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
 });
 
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-marks')->group(function(){
+    Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
+});
