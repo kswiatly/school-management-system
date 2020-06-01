@@ -72,4 +72,20 @@ class MarksController extends Controller
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         return redirect('/admin/marks');
     }
+
+    public function destroy(Marks $mark)
+    {
+        if(Gate::denies('delete-marks')){
+            return redirect()->route('admin.marks.index');
+        }
+        
+        if($mark->delete()){
+            session()->flash('success', 'Mark has been deleted');
+        }
+        else{
+            session()->flash('error','There was an error during deleting the mark');
+        }
+
+        return redirect()->route('admin.marks.index');
+    }
 }
