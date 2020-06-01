@@ -35,9 +35,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::resource('/students', 'StudentsController', ['expect'=>['show', 'create','store', 'destroy']]);
     Route::resource('/classes', 'ClassesController', ['expect'=>['show']]);
     Route::resource('/subjects', 'SubjectsController', ['expect'=>['show']]);
-    Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
 });
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-marks')->group(function(){
+    Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
+});
+
+Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:show-marks')->group(function(){
     Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
 });

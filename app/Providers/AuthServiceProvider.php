@@ -92,5 +92,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-marks', function($user){
             return $user->hasAnyRoles(['admin', 'teacher']);
         });
+
+        Gate::define('show-marks', function($user){
+            return $user->hasRole('student');
+        });
     }
 }

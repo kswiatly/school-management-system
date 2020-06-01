@@ -81,6 +81,11 @@
                                         Marks
                                     </a>
                                     @endcan
+                                    @can('show-marks')
+                                    <a class="dropdown-item" href="{{ route('student.marks.index') }}">
+                                        Marks
+                                    </a>
+                                    @endcan
                                     <a class="dropdown-item" href="/elearning">
                                         E-Learning
                                     </a>

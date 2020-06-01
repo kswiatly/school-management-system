@@ -24,7 +24,6 @@
                         @foreach($marks as $mark)
                             @php
                                 $teacherUserID = DB::table('teachers')->where('id', '=', $mark->teacher_id)->value('user_id');
-
                                 $studentUserID = DB::table('students')->where('id', '=', $mark->student_id)->value('user_id');
                             @endphp
                             <tr>
