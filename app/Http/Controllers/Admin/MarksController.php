@@ -101,7 +101,7 @@ class MarksController extends Controller
 
     public function edit(Marks $mark)
     {
-        if(Gate::denies('edit-students')){
+        if(Gate::denies('edit-marks')){
             return redirect(route('admin.marks.index'));
         }
 
@@ -144,10 +144,10 @@ class MarksController extends Controller
         $mark->test_id = $request->test;
         
         if($mark->save()){
-            $request->session()->flash('success', $mark->id . ' has been updated');
+            $request->session()->flash('success', 'Mark has been updated');
         }
         else{
-            $request->session()->flash('error','There was an error during updating the class');
+            $request->session()->flash('error','There was an error during updating the mark');
         }
 
         return redirect()->route('admin.marks.index');

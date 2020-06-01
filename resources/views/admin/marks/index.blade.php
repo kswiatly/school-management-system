@@ -17,7 +17,6 @@
                                 <th scope="col">Student</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Mark</th>
-                                <th scope="col">Date</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -39,7 +38,7 @@
                                 <td>
                                     @can('edit-marks')
                                     <a href="{{ route('admin.marks.edit', $mark->id) }}">
-                                        <button type="button" class="btn btn-primary float-left mr-3">Edit</button>
+                                        <button type="button" class="btn btn-primary float-left mr-1">Edit</button>
                                     </a>
                                     @endcan
                                     @can('delete-marks')
