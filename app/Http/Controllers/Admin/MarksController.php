@@ -98,4 +98,58 @@ class MarksController extends Controller
 
         return redirect()->route('admin.marks.index');
     }
+
+    public function edit(Marks $mark)
+    {
+        if(Gate::denies('edit-students')){
+            return redirect(route('admin.marks.index'));
+        }
+
+        $teachers = Teacher::all();
+        $students = Student::all();
+        $classes = Classes::all();
+        $subjects = Subject::all();
+        $tests = Test::all();
+        
+        return view('admin.marks.edit')->with([
+            'classes' => $classes,
+            'teachers' => $teachers,
+            'subjects' => $subjects,
+            'students' => $students,
+            'marks'=> $mark,
+            'tests'=> $tests,
+        ]);
+    }
+
+    public function update(Request $request, Marks $mark)
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        $mark->timestamps = false;
+        $student_id = DB::table('students')->where('user_id', $request->student)->value('id');
+        if(Auth::user()->id==1)
+        {
+            $teacher_id = DB::table('teachers')->where('user_id', $request->teacher)->value('id');
+        }
+        else
+        {
+            $teacher_id = DB::table('teachers')->where('user_id', Auth::user()->id)->value('id');
+        }
+
+        
+        $mark->teacher_id = $teacher_id;
+        $mark->class_id = $request->class;
+        $mark->subject_id = $request->subject;
+        $mark->student_id = $student_id;
+        $mark->mark = $request->mark;
+        $mark->test_id = $request->test;
+        
+        if($mark->save()){
+            $request->session()->flash('success', $mark->id . ' has been updated');
+        }
+        else{
+            $request->session()->flash('error','There was an error during updating the class');
+        }
+
+        return redirect()->route('admin.marks.index');
+    }
 }
