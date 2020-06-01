@@ -49,12 +49,15 @@ class MarksController extends Controller
 
     public function store(Request $request)
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $mark = new Marks;
-        
-        $mark->class_id = $request->name;
-        $mark->teacher_id = $request->teacher;
+        $mark->timestamps = false;
+        $student_id = DB::table('students')->where('user_id',$request->student)->value('id');
+        $teacher_id = DB::table('teachers')->where('user_id',$request->teacher)->value('id');
+        $mark->class_id = $request->class;
+        $mark->teacher_id = $teacher_id;
         $mark->subject_id = $request->subject;
-        $mark->student_id = $request->student;
+        $mark->student_id = $student_id;
         $mark->mark = $request->mark;
         $mark->test_id = $request->test;
 
@@ -66,7 +69,7 @@ class MarksController extends Controller
         else{
             $request->session()->flash('error','There was an error during creating the mark');
         }
-
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         return redirect('/admin/marks');
     }
 }

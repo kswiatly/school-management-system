@@ -14,7 +14,7 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="class">
                                 @foreach($classes as $class)
-                                    <option name="classes[]" value="{{ $class->name }}">
+                                    <option name="classes[]" value="{{ $class->id }}">
                                     <label>{{ DB::table('classes')->where('id', '=', $class->id)->value('name') }}</label>
                                 @endforeach
                                 </select>
@@ -77,6 +77,7 @@
                             </div>
                         </div>
 
+                        @csrf
                         <button type="submit" class="btn btn-primary">
                             Add
                         </button>
