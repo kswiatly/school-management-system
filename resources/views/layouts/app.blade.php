@@ -85,6 +85,9 @@
                                     <a class="dropdown-item" href="{{ route('student.marks.index') }}">
                                         Marks
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('student.averages.index') }}">
+                                        Averages
+                                    </a>
                                     @endcan
                                     <a class="dropdown-item" href="/elearning">
                                         E-Learning

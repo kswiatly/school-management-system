@@ -43,4 +43,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:show-marks')->group(function(){
     Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
+    Route::resource('/averages', 'AveragesController', ['expect'=>['show']]);  
 });

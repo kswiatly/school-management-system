@@ -10,7 +10,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MarksController extends Controller
+class AveragesController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
@@ -18,6 +18,6 @@ class MarksController extends Controller
 
     public function index()
     {
-        return view('student.marks.index');
+        return view('student.averages.index');
     }
 }
