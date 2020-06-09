@@ -28,7 +28,7 @@
                             @endphp
                                 <td scope="col">{{DB::table('users')->where('id', '=', $teacherUserID)->value('name')}}</td>
                                 <td scope="col">{{DB::table('subjects')->where('id', '=', $mark->subject_id)->value('name')}}</td>
-                                <td scope="col">{{DB::table('tests')->where('id', '=', $mark->test_id)->value('description')}}</td>
+                                <td scope="col">{{ucfirst(DB::table('tests')->where('id', '=', $mark->test_id)->value('description'))}}</td>
                                 <td scope="col">{{ $mark->mark }}</td>
                             </tr>
                         @endforeach
