@@ -45,3 +45,11 @@ Route::namespace('Student')->prefix('student')->name('student.')->middleware('ca
     Route::resource('/marks', 'MarksController', ['expect'=>['show']]);
     Route::resource('/averages', 'AveragesController', ['expect'=>['show']]);  
 });
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-events')->group(function(){
+    Route::resource('/events', 'EventsController', ['expect'=>['show']]);
+});
+
+Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:show-events')->group(function(){
+    Route::resource('/events', 'EventsController', ['expect'=>['show']]);
+});

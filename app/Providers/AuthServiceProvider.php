@@ -96,5 +96,25 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('show-marks', function($user){
             return $user->hasRole('student');
         });
+
+        Gate::define('manage-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('create-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('edit-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('delete-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('show-events', function($user){
+            return $user->hasRole('student');
+        });
     }
 }
