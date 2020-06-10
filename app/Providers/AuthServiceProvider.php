@@ -77,14 +77,48 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('admin');
         });
 
+        Gate::define('manage-marks', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
         Gate::define('create-marks', function($user){
-            return $user->hasRole('admin');
+            return $user->hasAnyRoles(['admin', 'teacher']);
         });
+
         Gate::define('edit-marks', function($user){
-            return $user->hasRole('admin');
+            return $user->hasAnyRoles(['admin', 'teacher']);
         });
+
         Gate::define('delete-marks', function($user){
-            return $user->hasRole('admin');
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('show-marks', function($user){
+            return $user->hasRole('student');
+        });
+
+        Gate::define('is-student', function($user){
+            return $user->hasRole('student');
+        });
+
+        Gate::define('manage-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('create-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('edit-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('delete-events', function($user){
+            return $user->hasAnyRoles(['admin', 'teacher']);
+        });
+
+        Gate::define('show-events', function($user){
+            return $user->hasRole('student');
         });
     }
 }

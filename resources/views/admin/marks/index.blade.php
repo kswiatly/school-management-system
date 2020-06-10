@@ -15,28 +15,32 @@
                                 <th scope="col">Teacher</th>
                                 <th scope="col">Subject</th>
                                 <th scope="col">Student</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Mark</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                            @endphp
                         @foreach($marks as $mark)
                             @php
                                 $teacherUserID = DB::table('teachers')->where('id', '=', $mark->teacher_id)->value('user_id');
-
                                 $studentUserID = DB::table('students')->where('id', '=', $mark->student_id)->value('user_id');
                             @endphp
                             <tr>
-                                <th scope="row">{{ $mark->id }}</th>
+                                <th scope="row">{{ $i }}</th>
                                 <td>{{DB::table('classes')->where('id', '=', $mark->class_id)->value('name')}}</td>
                                 <td>{{DB::table('users')->where('id', '=', $teacherUserID)->value('name')}}</td>
                                 <td>{{DB::table('subjects')->where('id', '=', $mark->subject_id)->value('name')}}</td>
                                 <td>{{DB::table('users')->where('id', '=', $studentUserID)->value('name')}}</td>
+                                <td>{{DB::table('tests')->where('id', '=', $mark->test_id)->value('description')}}</td>
                                 <td>{{ $mark->mark }}</td>
                                 <td>
                                     @can('edit-marks')
                                     <a href="{{ route('admin.marks.edit', $mark->id) }}">
-                                        <button type="button" class="btn btn-primary float-left mr-3">Edit</button>
+                                        <button type="button" class="btn btn-primary float-left mr-1">Edit</button>
                                     </a>
                                     @endcan
                                     @can('delete-marks')
@@ -48,6 +52,9 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @php
+                            $i+=1;
+                            @endphp
                         @endforeach
                         </tbody>
                     </table>

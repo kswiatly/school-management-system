@@ -18,9 +18,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                            @endphp
                         @foreach($students as $student)
                             <tr>
-                                <th scope="row">{{ $student->id }}</th>
+                                <th scope="row">{{ $i }}</th>
                                 <td>{{DB::table('users')->where('id', '=', $student->user_id)->value('name')}}</td>
                                 <td>{{DB::table('users')->where('id', '=', $student->user_id)->value('email')}}</td>
                                 <td>{{DB::table('classes')->where('id', '=', $student->class_id)->value('name')}}</td>
@@ -32,6 +35,9 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @php
+                            $i+=1;
+                            @endphp
                         @endforeach
                         </tbody>
                     </table>

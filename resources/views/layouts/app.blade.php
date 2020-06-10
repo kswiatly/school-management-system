@@ -75,8 +75,28 @@
                                     <a class="dropdown-item" href="{{ route('admin.subjects.index') }}">
                                         Subjects
                                     </a>
+                                    @endcan
+                                    @can('manage-marks')
                                     <a class="dropdown-item" href="{{ route('admin.marks.index') }}">
                                         Marks
+                                    </a>
+                                    @endcan
+                                    @can('manage-events')
+                                    <a class="dropdown-item" href="{{ route('admin.events.index') }}">
+                                        Events
+                                    </a>
+                                    @endcan
+                                    @can('show-marks')
+                                    <a class="dropdown-item" href="{{ route('student.marks.index') }}">
+                                        Marks
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('student.averages.index') }}">
+                                        Averages
+                                    </a>
+                                    @endcan
+                                    @can('show-events')
+                                    <a class="dropdown-item" href="{{ route('student.events.index') }}">
+                                        Events
                                     </a>
                                     @endcan
                                     <a class="dropdown-item" href="/elearning">

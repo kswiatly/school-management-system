@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add new mark</div>
+                <div class="card-header">Edit mark {{ $marks->id }}</div>
                 <div class="card-body">
-                    <form action="/admin/marks" method="POST">
-                        
-                        <div class="form-group row">
+                    <form action="{{ route('admin.marks.update', $marks) }}" method="POST">
+                    {{ method_field('PUT') }}
+                    <div class="form-group row">
                             <label for="class" class="col-md-2 col-form-label text-md-right">Class</label>  
                             <div class="col-md-6">
                                 <select class="form-control" name="class">
@@ -81,7 +81,7 @@
 
                         @csrf
                         <button type="submit" class="btn btn-primary">
-                            Add
+                            Update
                         </button>
                     </form>
                 </div>
