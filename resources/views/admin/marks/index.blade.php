@@ -21,13 +21,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                            @endphp
                         @foreach($marks as $mark)
                             @php
                                 $teacherUserID = DB::table('teachers')->where('id', '=', $mark->teacher_id)->value('user_id');
                                 $studentUserID = DB::table('students')->where('id', '=', $mark->student_id)->value('user_id');
                             @endphp
                             <tr>
-                                <th scope="row">{{ $mark->id }}</th>
+                                <th scope="row">{{ $i }}</th>
                                 <td>{{DB::table('classes')->where('id', '=', $mark->class_id)->value('name')}}</td>
                                 <td>{{DB::table('users')->where('id', '=', $teacherUserID)->value('name')}}</td>
                                 <td>{{DB::table('subjects')->where('id', '=', $mark->subject_id)->value('name')}}</td>
@@ -49,6 +52,9 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @php
+                            $i+=1;
+                            @endphp
                         @endforeach
                         </tbody>
                     </table>

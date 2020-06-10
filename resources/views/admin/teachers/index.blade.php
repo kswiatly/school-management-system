@@ -17,9 +17,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                            @endphp
                         @foreach($teachers as $teacher)
                             <tr>
-                                <th scope="row">{{ $teacher->id }}</th>
+                                <th scope="row">{{ $i }}</th>
                                 <td>{{DB::table('users')->where('id', '=', $teacher->user_id)->value('name')}}</td>
                                 <td>{{DB::table('users')->where('id', '=', $teacher->user_id)->value('email')}}</td>
                                 <td>
@@ -30,7 +33,10 @@
                                     @endcan
                                 </td>
                             </tr>
-                        @endforeach
+                            @php
+                            $i+=1;
+                            @endphp
+                        @endforeach                          
                         </tbody>
                     </table>
                     {{ $teachers->links() }}

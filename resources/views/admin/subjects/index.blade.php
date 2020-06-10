@@ -17,9 +17,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                            @endphp
                         @foreach($subjects as $subject)
                             <tr>
-                                <th scope="row">{{ $subject->id }}</th>
+                                <th scope="row">{{ $i }}</th>
                                 <td>{{ $subject->name }}</td>
                                 <td>{{ $subject->description }}</td>
                                 <td>
@@ -37,6 +40,9 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @php
+                            $i+=1;
+                            @endphp
                         @endforeach
                         </tbody>
                     </table>

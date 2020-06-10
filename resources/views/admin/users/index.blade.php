@@ -18,9 +18,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                            @endphp
                         @foreach($users as $user)
                             <tr>
-                                <th scope="row">{{ $user->id }}</th>
+                                <th scope="row">{{ $i }}</th>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
@@ -39,6 +42,9 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @php
+                            $i+=1;
+                            @endphp
                         @endforeach
                         </tbody>
                     </table>
